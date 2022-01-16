@@ -1,47 +1,68 @@
 package com.example.EmployeeAPI.Entity;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 public class Employee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long e_id;
-    private String e_name;
-    @Temporal(TemporalType.DATE)
-    private Date date;
+    private long eId;
+    private String eName;
+    private LocalDate dateOfJoining;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 
     public  Employee(){
 
     }
-    public Employee(String e_name, Date date) {
-        this.e_name = e_name;
-        this.date = date;
+    public Employee(String e_name, LocalDate date,LocalDateTime createdDate,LocalDateTime updatedDate) {
+        this.eName = e_name;
+        this.dateOfJoining = date;
+        this.createdAt = createdDate;
+        this.updatedAt = updatedDate;
     }
 
-    public long getE_id() {
-        return e_id;
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
 
-    public void setE_id(long e_id) {
-        this.e_id = e_id;
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public String getE_name() {
-        return e_name;
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setE_name(String e_name) {
-        this.e_name = e_name;
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
-    public Date getDate() {
-        return date;
+    public long geteId() {
+        return eId;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void seteId(long eId) {
+        this.eId = eId;
+    }
+
+    public String geteName() {
+        return eName;
+    }
+
+    public void seteName(String eName) {
+        this.eName = eName;
+    }
+
+    public LocalDate getDateOfJoining() {
+        return dateOfJoining;
+    }
+
+    public void setDateOfJoining(LocalDate dateOfJoining) {
+        this.dateOfJoining = dateOfJoining;
     }
 }

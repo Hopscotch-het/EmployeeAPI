@@ -1,16 +1,12 @@
 package com.example.EmployeeAPI.controller;
 
-import com.example.EmployeeAPI.Entity.Employee;
+import com.example.EmployeeAPI.DTO.response.EmployeeDetails;
 import com.example.EmployeeAPI.Services.EmployeeService;
-import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.lang.reflect.Field;
 import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
 
 @RestController
 public class MyController {
@@ -23,23 +19,28 @@ public class MyController {
     }
 
     @GetMapping("/employee")
-    public List<Employee> getEmployee(){
+    public List<EmployeeDetails> getEmployee(){
         return this.employeeService.getEmployees();
     }
 
     @GetMapping("/employee/{e_id}")
-    public Optional<Employee> getEmployee(@PathVariable String e_id){
+    public EmployeeDetails getEmployee(@PathVariable String e_id){
         return this.employeeService.getEmployee(Long.parseLong(e_id));
     }
 
     @PostMapping("/employee")
-    public Employee addEmployee(@RequestBody Employee e) {
-        return this.employeeService.addEmployee(e.getE_name());
+    public EmployeeDetails addEmployee(@RequestBody com.example.EmployeeAPI.DTO.request.EmployeeDetails employeeDetails) {
+        return this.employeeService.addEmployee(employeeDetails);
     }
 
     @DeleteMapping("/employee/{e_id}")
-    public void deleteEmployee(@PathVariable String e_id){
-        employeeService.deleteEmployee(Long.parseLong(e_id));
+    public ResponseEntity<String> deleteEmployee(@PathVariable String e_id){
+        return employeeService.deleteEmployee(Long.parseLong(e_id));
+    }
+
+    @PutMapping("/employee")
+    public ResponseEntity<String> updateEmployee(@RequestBody com.example.EmployeeAPI.DTO.request.EmployeeDetails employeeDetails){
+        return this.employeeService.updateEmployee(employeeDetails);
     }
 
 }
