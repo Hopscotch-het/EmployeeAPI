@@ -18,9 +18,9 @@ public class MyController {
         return "Welcome to home";
     }
 
-    @GetMapping("/employee")
-    public List<EmployeeDetails> getEmployee(){
-        return this.employeeService.getEmployees();
+    @GetMapping("/employee/page/{pageNo}")
+    public List<EmployeeDetails> getEmployee(@PathVariable Integer pageNo){
+        return this.employeeService.getEmployees(pageNo);
     }
 
     @GetMapping("/employee/{e_id}")

@@ -4,6 +4,8 @@ import com.example.EmployeeAPI.DTO.response.EmployeeDetails;
 import com.example.EmployeeAPI.Dao.EmployeeDao;
 import com.example.EmployeeAPI.Entity.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -21,10 +23,12 @@ public class EmployeeServiceImpl implements EmployeeService{
 
     }
     @Override
-    public List<EmployeeDetails> getEmployees() {
+    public List<EmployeeDetails> getEmployees(int pageNo) {
 
         List<EmployeeDetails> employeeDetailsList = new LinkedList<>();
-        for (Employee employee: employeeDao.findAll()){
+        int PAGESIZE = 5;
+        Pageable pageable = PageRequest.of(pageNo,PAGESIZE);
+        for (Employee employee: employeeDao.findAll(pageable)){
             EmployeeDetails employeeDetails = new EmployeeDetails();
             employeeDetails.seteId(employee.geteId());
             employeeDetails.setDateOfJoining(employee.getDateOfJoining());
