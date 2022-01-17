@@ -18,8 +18,8 @@ public class MyController {
         return "Welcome to home";
     }
 
-    @GetMapping("/employee/page/{pageNo}")
-    public List<EmployeeDetails> getEmployee(@PathVariable Integer pageNo){
+    @GetMapping("/employee")
+    public List<EmployeeDetails> getEmployee(@RequestParam("page") Integer pageNo){
         return this.employeeService.getEmployees(pageNo);
     }
 
@@ -33,7 +33,7 @@ public class MyController {
         return this.employeeService.addEmployee(employeeDetails);
     }
 
-    @DeleteMapping("/employee/{e_id}")
+    @DeleteMapping("/employee/{eId}")
     public ResponseEntity<String> deleteEmployee(@PathVariable String eId){
         return employeeService.deleteEmployee(Long.parseLong(eId));
     }
