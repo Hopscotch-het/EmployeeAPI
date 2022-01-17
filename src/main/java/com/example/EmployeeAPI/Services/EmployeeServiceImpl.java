@@ -39,8 +39,8 @@ public class EmployeeServiceImpl implements EmployeeService{
     }
 
     @Override
-    public EmployeeDetails getEmployee(long e_id) {
-        Employee employee = employeeDao.getById(e_id);
+    public EmployeeDetails getEmployee(long eId) {
+        Employee employee = employeeDao.getById(eId);
 
         EmployeeDetails employeeDetails = new EmployeeDetails();
 
@@ -66,9 +66,9 @@ public class EmployeeServiceImpl implements EmployeeService{
     }
 
     @Override
-    public ResponseEntity<String> deleteEmployee(long e_id) {
-        if(employeeDao.existsById(e_id)) {
-            Employee employee = employeeDao.getById(e_id);
+    public ResponseEntity<String> deleteEmployee(long eId) {
+        if(employeeDao.existsById(eId)) {
+            Employee employee = employeeDao.getById(eId);
             employeeDao.delete(employee);
             return ResponseEntity.status(HttpStatus.OK).body("Employee Deleted Successfully");
         }

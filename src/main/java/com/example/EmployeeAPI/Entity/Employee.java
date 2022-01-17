@@ -18,8 +18,8 @@ public class Employee {
     public  Employee(){
 
     }
-    public Employee(String e_name, LocalDate date,LocalDateTime createdDate,LocalDateTime updatedDate) {
-        this.eName = e_name;
+    public Employee(String eName, LocalDate date,LocalDateTime createdDate,LocalDateTime updatedDate) {
+        this.eName = eName;
         this.dateOfJoining = date;
         this.createdAt = createdDate;
         this.updatedAt = updatedDate;

@@ -23,9 +23,9 @@ public class MyController {
         return this.employeeService.getEmployees(pageNo);
     }
 
-    @GetMapping("/employee/{e_id}")
-    public EmployeeDetails getEmployee(@PathVariable String e_id){
-        return this.employeeService.getEmployee(Long.parseLong(e_id));
+    @GetMapping("/employee/{eId}")
+    public EmployeeDetails getEmployee(@PathVariable String eId){
+        return this.employeeService.getEmployee(Long.parseLong(eId));
     }
 
     @PostMapping("/employee")
@@ -34,8 +34,8 @@ public class MyController {
     }
 
     @DeleteMapping("/employee/{e_id}")
-    public ResponseEntity<String> deleteEmployee(@PathVariable String e_id){
-        return employeeService.deleteEmployee(Long.parseLong(e_id));
+    public ResponseEntity<String> deleteEmployee(@PathVariable String eId){
+        return employeeService.deleteEmployee(Long.parseLong(eId));
     }
 
     @PutMapping("/employee")
