@@ -18,7 +18,16 @@ public class Employee {
     public  Employee(){
 
     }
-    public Employee(String eName, LocalDate date,LocalDateTime createdDate,LocalDateTime updatedDate) {
+
+    public Employee(long eId, String eName, LocalDate dateOfJoining, LocalDateTime createdAt, LocalDateTime updatedAt) {
+        this.eId = eId;
+        this.eName = eName;
+        this.dateOfJoining = dateOfJoining;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
+
+    public Employee(String eName, LocalDate date, LocalDateTime createdDate, LocalDateTime updatedDate) {
         this.eName = eName;
         this.dateOfJoining = date;
         this.createdAt = createdDate;

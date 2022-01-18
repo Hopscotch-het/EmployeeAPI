@@ -57,7 +57,7 @@ public class EmployeeServiceImpl implements EmployeeService{
         LocalDateTime createdAt = LocalDateTime.now();
         LocalDateTime updatedAt = LocalDateTime.now();
         Employee employee = new Employee(employeeDetails.geteName(),dateOfJoining,createdAt,updatedAt);
-        Employee employee1= employeeDao.save(employee);
+        Employee employee1 = employeeDao.save(employee);
         EmployeeDetails employeeDetails1 =new EmployeeDetails();
         employeeDetails1.seteId(employee1.geteId());
         employeeDetails1.seteName(employee1.geteName());
