@@ -4,7 +4,6 @@ import com.example.EmployeeAPI.DTO.response.EmployeeDetails;
 import com.example.EmployeeAPI.Dao.EmployeeDao;
 import com.example.EmployeeAPI.Entity.Employee;
 import com.example.EmployeeAPI.Services.EmployeeServiceImpl;
-import org.assertj.core.internal.Iterables;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
@@ -146,14 +145,21 @@ class EmployeeApiApplicationTests {
 
 	@Test
 	public void givenEmployeeId_WhenDeleteRequestRaise_ThenItShouldBeDeleted_FromDatabase(){
+
 		long employeeResignedId=5;
+		LocalDate date=LocalDate.now();
+		LocalDateTime dateTime=LocalDateTime.now();
+		Employee employee=new Employee(employeeResignedId,"het",date,dateTime,dateTime);
 		ArgumentCaptor<Long> employeeIdCapturer = ArgumentCaptor.forClass(Long.class);
 		when(employeeDao.existsById(employeeResignedId)).thenReturn(true);
-		employeeServiceImpl.deleteEmployee(employeeResignedId);
+		when(employeeDao.getById(employeeResignedId)).thenReturn(employee);
 
-
+		ResponseEntity<String> actualMessage=employeeServiceImpl.deleteEmployee(employeeResignedId);
+		ResponseEntity<String> expectedMessage=ResponseEntity.status(HttpStatus.OK).body("Employee Deleted Successfully");
+		verify(employeeDao,times(1)).delete(employee);
 		verify(employeeDao,times(1)).getById(employeeIdCapturer.capture());
-		assertEquals(employeeResignedId, employeeIdCapturer.getValue());
-	}
+		assertEquals(employeeResignedId,employeeIdCapturer.getValue());
+		assertEquals(expectedMessage, actualMessage);
 
+	}
 }
